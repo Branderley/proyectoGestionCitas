@@ -1,0 +1,117 @@
+<div class="card mt-3" *ngIf="userLogged|async as user">
+  <div class="card-body">
+    <div class="card-header m-2 text-center">
+      <b>Gestionar Cita</b>
+    </div>
+    <form #citaForm="ngForm" (ngSubmit)="onSubmit(citaForm)">
+      <input
+        type="hidden"
+        name="key"
+        #key="ngModel"
+        [(ngModel)]="citaService.selectedCita.key"
+      >
+      <div class="form-group col-10">
+        <label>Fecha</label>
+        <input
+          type="date"
+          class="form-control m-2"
+          name="fecha"
+          #fecha="ngModel"
+          [(ngModel)]="citaService.selectedCita.fecha"
+          maxlength=10
+          required
+        >
+      </div>
+      <div class="form-group col-10">
+        <label>Hora</label>
+        <input
+          type="text"
+          class="form-control m-2"
+          name="hora"
+          #hora="ngModel"
+          [(ngModel)]="citaService.selectedCita.hora"
+          maxlength=5
+          required
+        >
+      </div>
+      <div class="form-group col-10">
+        <label>Tipo de Servicio</label>
+        <select
+          class="form-control m-2 form-select"
+          name="typeservice"
+          #typeservice="ngModel"
+          [(ngModel)]="citaService.selectedCita.typeservice"
+          required
+        >
+          <option value="Consulta">Consulta</option>
+          <option value="Curación">Curación</option>
+        </select>
+      </div>
+      <div class="form-group col-10">
+        <label>Medico</label>
+        <select
+          class="form-control m-2 form-select"
+          name="dnidoc"
+          #dnidoc="ngModel"
+          [(ngModel)]="citaService.selectedCita.dnidoc"
+          required
+        >
+          <option selected value="Medico 1">medico 1</option>
+          <option value="Medico 2">medico 2</option>
+        </select>
+      </div>
+
+      <div class="row" *ngFor="let users of userList">
+        <div *ngIf="user.email==users.email && users.rank=='client'">
+          <input
+            type="hidden"
+            name="emailuser"
+            #emailuser="ngModel"
+            [(ngModel)]="user.email"
+            value="{{user.email}}"
+          >
+          <input
+            type="hidden"
+            name="state"
+            #state="ngModel"
+            [(ngModel)]="citaService.selectedCita.state"
+            value="Pendiente"
+          >
+        </div>
+        <div class="form-group col" *ngIf="user.email==users.email && users.rank=='admin'">
+          <div class="form-group col-10">
+            <label>Cliente</label>
+            <input
+              type="text"
+              class="form-control m-2"
+              name="emailuser"
+              #emailuser="ngModel"
+              [(ngModel)]="citaService.selectedCita.emailuser"
+              maxlength=25
+              required
+            >
+          </div>
+          <div class="form-group col-10">
+            <label>Estado</label>
+            <select
+              class="form-control m-2 form-select"
+              name="state"
+              #state="ngModel"
+              [(ngModel)]="citaService.selectedCita.state"
+              required
+              >
+              <option value="Pendiente">Pendiente</option>
+              <option value="Realizado">Realizado</option>
+              <option value="Cancelado">Cancelado</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary m-2" type="submit">
+          <i class="fa fa-plus-circle"></i> Agregar Cita
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

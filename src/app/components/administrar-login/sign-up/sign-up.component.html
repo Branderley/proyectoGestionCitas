@@ -1,0 +1,121 @@
+<div class="container">
+  <div class="card">
+      <div class="card-header">
+          <b>Registrate</b>
+      </div>
+      <div class="card-body p-4">
+          <form #userForm="ngForm"(ngSubmit)="registrar(userForm)">
+
+              <label style="float: left;">Nombres: </label>
+              <input
+                type="text"
+                class="form-control m-2"
+                name="name"
+                #name="ngModel"
+                [(ngModel)]="userService.selectedUser.name"
+                maxlength=25
+                required
+                placeholder="Ingrese sus nombres"
+              >
+
+              <label style="float: left;">Apellidos: </label>
+              <input
+                type="text"
+                class="form-control m-2"
+                name="lastname"
+                #lastname="ngModel"
+                [(ngModel)]="userService.selectedUser.lastname"
+                maxlength=25
+                required
+                placeholder="Ingrese sus apellidos"
+              >
+
+              <label style="float: left;">DNI:</label>
+              <input
+                class="form-control m-2"
+                type="text"
+                name="dni"
+                #dni="ngModel"
+                [(ngModel)]="userService.selectedUser.dni"
+                maxlength=8
+                required
+                placeholder="Ingrese su número de dni"
+              >
+
+              <label style="float: left;">Correo:</label>
+              <input
+                class="form-control m-2"
+                type="email"
+                name="email"
+                #email="ngModel"
+                [(ngModel)]="userService.selectedUser.email"
+                maxlength=25
+                required
+                placeholder="Ingrese su correo electronico"
+              >
+
+              <label style="float: left;">Celular:</label>
+              <input
+                class="form-control m-2"
+                type="text"
+                name="phone"
+                #phone="ngModel"
+                [(ngModel)]="userService.selectedUser.phone"
+                maxlength=9
+                required
+                placeholder="Ingrese su número de celular"
+              >
+
+              <label style="float: left;">Dirección:</label>
+              <input
+                class="form-control m-2"
+                type="text"
+                name="address"
+                #address="ngModel"
+                [(ngModel)]="userService.selectedUser.address"
+                maxlength=25
+                required
+                placeholder="Ingrese su dirección"
+              >
+
+              <input
+                class="form-control m-2"
+                type="hidden"
+                name="rank"
+                #rank="ngModel"
+                value="client"
+                [(ngModel)]="userService.selectedUser.rank"
+              >
+
+              <input
+                class="form-control m-2"
+                type="hidden"
+                name="state"
+                #state="ngModel"
+                value="true"
+                [(ngModel)]="userService.selectedUser.state"
+              >
+
+              <label style="float: left;">Contraseña</label>
+              <input
+                class="form-control m-2"
+                type="password"
+                name="password"
+                #password="ngModel"
+                [(ngModel)]="userService.selectedUser.password"
+                maxlength=20
+                required
+                placeholder="Ingrese su contraseña"
+              >
+
+              <div class="card-footer">
+                  <a routerLink="/login">Iniciar Sesión</a>
+              </div>
+
+              <div class="d-grid gap-2">
+                  <button class="btn btn-primary m-2" type="submit">Registrarse</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="container" *ngIf="userLogged|async as user">
+  <div class="card mt-3" style="width:20rem;">
+    <div class="card-header m-2 text-center">
+      <b>Datos Personales</b>
+    </div>
+    <div class="card-body" *ngFor="let users of userList">
+      <div *ngIf="users.email == user.email">
+        <div class="m-2">
+          Nombres: {{ users.name }}
+        </div>
+        <div class="m-2">
+          Apellidos: {{ users.lastname }}
+        </div>
+        <div class="m-2">
+          DNI: {{ users.dni }}
+        </div>
+        <div class="m-2">
+          Número de celular: {{ users.phone }}
+        </div>
+        <div class="m-2">
+          Dirección: {{ users.address }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

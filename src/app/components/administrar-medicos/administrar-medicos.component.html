@@ -1,0 +1,14 @@
+<div class="container" *ngIf="userLogged|async as user">
+  <div *ngFor="let users of userList">
+    <div *ngIf="user.email==users.email && users.rank=='admin'">
+      <div class="row">
+        <div class="col-md-3">
+            <app-medico></app-medico>
+        </div>
+        <div class="col-md-5 text-center">
+            <app-listar-medicos></app-listar-medicos>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

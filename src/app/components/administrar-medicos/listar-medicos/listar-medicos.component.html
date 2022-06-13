@@ -1,0 +1,21 @@
+<div class="card m-3" *ngIf="userLogged|async as user">
+  <div class="card-body">
+    <div class="card-header m-2 text-center">
+      <b>Lista de Medicos</b>
+    </div>
+    <table class="table table-sm table-hover">
+      <tbody *ngFor="let medico of medicoList">
+        <td>{{ medico.name }}</td>
+        <td>{{ medico.dni }}</td>
+        <td>
+          <a class="btn btn-secondary text-black" (click)="onEdit(medico)">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+          <a class="btn btn-danger text-black" (click)="onDelete(medico.key)">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>
+      </tbody>
+    </table>
+  </div>
+</div>

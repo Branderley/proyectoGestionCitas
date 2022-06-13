@@ -1,0 +1,36 @@
+<div class="container" *ngIf="userLogged|async as user">
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="">Clinica Dental Odonto Services</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="administrar-citas">Agenda tu cita</a>
+          </li>
+          <li class="nav-item" *ngFor="let users of userList">
+            <a class="nav-link" routerLink="administrar-medicos" *ngIf="user.email==users.email && users.rank=='admin'">Administrar Medicos</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="administrar-historial">Historial</a>
+          </li>
+        </ul>
+        <div class="navbar-text">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="administrar-user">
+                {{ user.email }}
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="login" (click)="logout()">Cerrar Sesión</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+</div>

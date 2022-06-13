@@ -1,0 +1,14 @@
+<div class="container" *ngIf="userLogged|async as user">
+  <div *ngFor="let users of userList">
+    <div *ngIf="user.email==users.email && users.rank=='client'">
+
+      <p>administrar-historial client works!</p>
+
+    </div>
+    <div *ngIf="user.email==users.email && users.rank=='admin'">
+
+      <p>administrar-historial admin works!</p>
+
+    </div>
+  </div>
+</div>
