@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 
-import { CitaModule } from 'src/app/models/cita/cita.module';
-import { UserModule } from 'src/app/models/user/user.module';
+import { CitaModule } from 'src/app/models/cita.module';
+import { UserModule } from 'src/app/models/user.module';
 import { CitaService } from 'src/app/services/cita.service';
 import { UserService } from 'src/app/services/user.service';
 

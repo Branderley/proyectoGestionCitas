@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
-import { MedicoModule } from 'src/app/models/medico/medico.module';
+import { MedicoModule } from 'src/app/models/medico.module';
 import { MedicoService } from 'src/app/services/medico.service';
 import { UserService } from 'src/app/services/user.service';
 

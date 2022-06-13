@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
 import { ToastrService } from 'ngx-toastr';
 
-import { CitaModule } from '../models/cita/cita.module';
+import { CitaModule } from '../models/cita.module';
 
 @Injectable({
   providedIn: 'root'

@@ -4,7 +4,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/datab
 import { Router } from '@angular/router';
 
 import { ToastrService } from 'ngx-toastr';
-import { UserModule } from '../models/user/user.module';
+import { UserModule } from '../models/user.module';
 
 @Injectable({
   providedIn: 'root'
