@@ -8,5 +8,8 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class HoraModule {
-
+  key: string;
+  fecha: string;
+  hora: string;
+  state: boolean;
 }
