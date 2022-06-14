@@ -47,6 +47,7 @@ import { AdministrarBannersComponent } from './components/administrar-banners/ad
 import { BannerComponent } from './components/administrar-banners/banner/banner.component';
 import { ListarBannersComponent } from './components/administrar-banners/listar-banners/listar-banners.component';
 import { NgDropImagesDirective } from './directives/ng-drop-images.directive';
+import { ViewBannersComponent } from './components/administrar-banners/view-banners/view-banners.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { NgDropImagesDirective } from './directives/ng-drop-images.directive';
     AdministrarBannersComponent,
     BannerComponent,
     ListarBannersComponent,
-    NgDropImagesDirective
+    NgDropImagesDirective,
+    ViewBannersComponent
   ],
   imports: [
     AppRoutingModule,

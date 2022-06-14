@@ -11,9 +11,9 @@
             <td><b>Hora</b></td>
           </tr>
           <tr *ngFor="let cita of citaList">
-            <td *ngIf="users.email==user.email && cita.dniuser==users.dni">{{ cita.fecha }}</td>
-            <td *ngIf="users.email==user.email && cita.dniuser==users.dni">{{ cita.hora }}</td>
-            <td *ngIf="users.email==user.email && cita.dniuser==users.dni">
+            <td *ngIf="users.email==user.email && cita.dniuser==users.dni && cita.state=='Pendiente'">{{ cita.fecha }}</td>
+            <td *ngIf="users.email==user.email && cita.dniuser==users.dni && cita.state=='Pendiente'">{{ cita.hora }}</td>
+            <td *ngIf="users.email==user.email && cita.dniuser==users.dni && cita.state=='Pendiente'">
               <a class="btn btn-secondary text-black" (click)="onEdit(cita)">
                 <i class="fa fa-pencil-square-o"></i>
               </a>

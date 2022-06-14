@@ -1,61 +1,66 @@
-<div class="row">
-  <h1><span>N</span>uevo <span>B</span>anner</h1>
-</div>
+<div class="card mt-3" >
+  <div class="card-body">
+    <div class="card-header text-center">
+      <b>Gestionar Banner</b>
+    </div>
 
-<div appNgDropImages [files]="files" (mouseSobre)="dropElement = $event; addFormBanner()"
-  [ngClass]="{ 'file-over': dropElement }" mouse class="well drop-zone">
-  <h4 class="">Deja caer los archivos</h4>
-  <img src="assets/imagen.png" class="img-fluid d-block mx-auto " alt="img-dopfiles">
-</div>
+    <div appNgDropImages [files]="files" (mouseSobre)="dropElement = $event; addFormBanner()"
+      [ngClass]="{ 'file-over': dropElement }" mouse class="well drop-zone">
+      <h4 class="">Deja caer los archivos</h4>
+      <img src="assets/imagen.png" class="img-fluid d-block mx-auto " alt="img-dopfiles">
+    </div>
 
-<form [formGroup]="formParent" class="">
-  <div formArrayName="banners">
-    <swiper [navigation]="true" [slidesPerView]="2" [spaceBetween]="3" [autoplay]="true" class="mySwiper">
-      <ng-template *ngFor="let file of files; index as i" ; swiperSlide class="swiper-slide">
+    <form [formGroup]="formParent" class="">
+      <div formArrayName="banners">
+        <swiper [navigation]="true" [slidesPerView]="2" [spaceBetween]="3" [autoplay]="true" class="mySwiper">
+          <ng-template *ngFor="let file of files; index as i" ; swiperSlide class="swiper-slide">
 
-        <div [formGroupName]="i" class="card">
+            <div [formGroupName]="i" class="card-md-10">
 
-          <h5 class="card-header bg-dark">{{ file.fileName }}</h5>
+              <h5 class="card-header bg-dark">{{ file.fileName }}</h5>
 
-          <div class="progress">
-            <div class="progress-bar bg-warning" role="progressbar" [ngStyle]="{ width: file.progress + '%' }">
-              {{ files[i].file.size / 1024 / 1024 | number: ".2-2" }} MB
-            </div>
-          </div>
+              <div class="progress">
+                <div class="progress-bar bg-warning" role="progressbar" [ngStyle]="{ width: file.progress + '%' }">
+                  {{ files[i].file.size / 1024 / 1024 | number: ".2-2" }} MB
+                </div>
+              </div>
 
-          <div class="card-body">
+              <div class="card-body">
 
-            <div class="row">
-              <label class="col col-form-label">Titulo</label>
-              <div class="col">
-                <input type="text" class="form-control" formControlName="titulo"
-                  [ngClass]="{'is-invalid': getCtrl(i)['titulo'].errors}">
+                <div class="row">
+                  <label class="col col-form-label">Titulo</label>
+                  <div class="col">
+                    <input type="text" class="form-control" formControlName="titulo"
+                      [ngClass]="{'is-invalid': getCtrl(i)['titulo'].errors}">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col col-form-label">Subtitulo</label>
+                  <div class="col">
+                    <input type="text" class="form-control" formControlName="subtitulo"
+                      [ngClass]="{'is-invalid': getCtrl(i)['subtitulo'].errors}">
+                  </div>
+                </div>
+
+                <div class="row">
+                  <label class="col col-form-label">Descripción</label>
+                  <div class="col">
+                    <input type="text" class="form-control" formControlName="descripcion"
+                      [ngClass]="{'is-invalid': getCtrl(i)['descripcion'].errors}">
+                  </div>
+                </div>
+
+                <div class="col">
+                  <button (click)="uploadThis(i)" type="submit" class="col btn btn-primary">Subir</button>
+                  <button (click)="removeThis(i)" type="submit" class="col btn btn-warning float-end">Borrar</button>
+                </div>
               </div>
             </div>
+          </ng-template>
+        </swiper>
+      </div>
+    </form>
 
-            <div class="row">
-              <label class="col col-form-label">Subtitulo</label>
-              <div class="col">
-                <input type="text" class="form-control" formControlName="subtitulo"
-                  [ngClass]="{'is-invalid': getCtrl(i)['subtitulo'].errors}">
-              </div>
-            </div>
-
-            <div class="row">
-              <label class="col col-form-label">Descripción</label>
-              <div class="col">
-                <input type="text" class="form-control" formControlName="descripcion"
-                  [ngClass]="{'is-invalid': getCtrl(i)['descripcion'].errors}">
-              </div>
-            </div>
-
-            <div class="col">
-              <button (click)="uploadThis(i)" type="submit" class="col btn btn-primary">Subir</button>
-              <button (click)="removeThis(i)" type="submit" class="col btn btn-warning float-end">Borrar</button>
-            </div>
-          </div>
-        </div>
-      </ng-template>
-    </swiper>
   </div>
-</form>
+</div>
