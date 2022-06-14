@@ -1,1 +1,14 @@
-<p>administrar-banners works!</p>
+<div class="container" *ngIf="userLogged|async as user">
+  <div *ngFor="let users of userList">
+    <div *ngIf="user.email==users.email && users.rank=='admin'">
+      <div class="row">
+        <div class="col-md-3">
+          <app-banner></app-banner>
+        </div>
+        <div class="col-md-5 text-center">
+          <app-listar-banners></app-listar-banners>
+        </div>
+    </div>
+    </div>
+  </div>
+</div>

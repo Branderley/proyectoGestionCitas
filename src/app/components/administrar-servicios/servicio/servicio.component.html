@@ -1,1 +1,68 @@
-<p>servicio works!</p>
+<div class="card mt-3" *ngIf="userLogged|async as user">
+  <div class="card-body">
+    <div class="card-header m-2 text-center">
+      <b>Gestionar Servicio</b>
+    </div>
+    <form #servicioForm="ngForm" (ngSubmit)="onSubmit(servicioForm)">
+      <input
+        type="hidden"
+        name="key"
+        #key="ngModel"
+        [(ngModel)]="servicioService.selectedServicio.key"
+      >
+
+      <div class="form-floating form-group col-10">
+        <input
+        type="text"
+        class="form-control m-2"
+        id="name"
+        name="name"
+        #name="ngModel"
+        [(ngModel)]="servicioService.selectedServicio.name"
+        maxlength=25
+        placeholder="your name"
+        required
+        >
+        <label for="name">Nombre del servicio</label>
+      </div>
+
+      <div class="form-floating form-group col-10">
+        <select
+          class="form-control m-2 form-select"
+          id="time"
+          name="time"
+          #time="ngModel"
+          [(ngModel)]="servicioService.selectedServicio.time"
+          required
+          >
+          <option value="0.5">Media hora</option>
+          <option value="1">1 hora</option>
+          <option value="1.5">1:30 horas</option>
+          <option value="2">2 horas</option>
+        </select>
+        <label for="time">Tiempo de demora</label>
+      </div>
+
+      <div class="form-floating form-group col-5">
+        <select
+          class="form-control m-2 form-select"
+          id="state"
+          name="state"
+          #state="ngModel"
+          [(ngModel)]="servicioService.selectedServicio.state"
+          required
+          >
+          <option value=true>Activo</option>
+          <option value=false>Inactivo</option>
+        </select>
+        <label for="state">Estado</label>
+      </div>
+
+      <div class="form-group">
+        <button class="btn btn-primary m-2" type="submit">
+          <i class="fa fa-plus-circle"></i> Agregar Servicio
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

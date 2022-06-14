@@ -4,9 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 
 import { CitaModule } from 'src/app/models/cita.module';
 import { MedicoModule } from 'src/app/models/medico.module';
+import { ServicioModule } from 'src/app/models/servicio.module';
 import { UserModule } from 'src/app/models/user.module';
 import { CitaService } from 'src/app/services/cita.service';
 import { MedicoService } from 'src/app/services/medico.service';
+import { ServicioService } from 'src/app/services/servicio.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,11 +20,13 @@ export class CitaComponent implements OnInit {
 
   userList: UserModule[] = [];
   medicoList: MedicoModule[] = [];
+  servicioList: ServicioModule[] = [];
 
   constructor(
     private citasService: CitaService,
     private readonly userService: UserService,
-    private medicoService: MedicoService,
+    private readonly medicoService: MedicoService,
+    private readonly servicioService: ServicioService,
   ) {
     this.citaService;
   }
@@ -47,6 +51,16 @@ export class CitaComponent implements OnInit {
         this.medicoList.push(x);
       })
     });
+
+    this.servicioService.getServicioList().snapshotChanges().subscribe(item => {
+      this.servicioList = [];
+      item.forEach(element => {
+        let x = element.payload.toJSON() as ServicioModule;
+        x.key = element.key;
+        this.servicioList.push(x);
+      })
+    });
+
     this.citaService.selectedCita.state = "Pendiente";
   }
 

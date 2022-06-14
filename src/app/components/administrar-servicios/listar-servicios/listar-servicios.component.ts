@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+
+import { ServicioModule } from 'src/app/models/servicio.module';
+import { ServicioService } from 'src/app/services/servicio.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-listar-servicios',
@@ -7,9 +12,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListarServiciosComponent implements OnInit {
 
-  constructor() { }
+  servicioList: ServicioModule[] = [];
+
+  constructor(
+    private readonly userService: UserService,
+    private servicioService: ServicioService,
+    private toastr: ToastrService,
+  ) { }
 
   ngOnInit(): void {
+    this.servicioService.getServicioList().snapshotChanges().subscribe(item => {
+      this.servicioList = [];
+      item.forEach(element => {
+        let x = element.payload.toJSON() as ServicioModule;
+        x.key = element.key;
+        this.servicioList.push(x);
+      })
+    });
   }
 
+  onEdit(servicio: ServicioModule) {
+    this.servicioService.selectedServicio = Object.assign({}, servicio);
+  }
+
+  onDelete(key: string) {
+    if(confirm('¿Estas seguro de querer eliminarlo?')) {
+      this.servicioService.deleteServicio(key);
+      this.toastr.success('Operacion realizada con exito', 'Servicio Eliminado');
+    }
+  }
+
+  get userLogged() {
+    return this.userService.getUserLogged();
+  }
 }

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 
 import { MedicoModule } from 'src/app/models/medico.module';
 import { MedicoService } from 'src/app/services/medico.service';
@@ -16,7 +15,6 @@ export class MedicoComponent implements OnInit {
   constructor(
     private medicosService: MedicoService,
     private readonly userService: UserService,
-    private toastr: ToastrService
     ) {
       this.medicoService;
   }
@@ -33,7 +31,6 @@ export class MedicoComponent implements OnInit {
       this.medicoService.updateMedico(medicoForm.value);
 
     this.ngOnInit();
-    this.toastr.success('Operacion realizada con exito');
   }
 
   resetForm(medicoForm?: NgForm) {

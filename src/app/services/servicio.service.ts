@@ -9,7 +9,7 @@ import { ServicioModule } from '../models/servicio.module';
 export class ServicioService {
 
   private servicioList: AngularFireList<any>;
-  selected: ServicioModule = new ServicioModule();
+  selectedServicio: ServicioModule = new ServicioModule();
 
   constructor(
     private db: AngularFireDatabase,
@@ -27,6 +27,7 @@ export class ServicioService {
       this.servicioList.push({
         name: servicio.name,
         time: servicio.time,
+        state: servicio.state,
       })
       this.toastr.success('Operación realizada con exito');
     }
@@ -42,6 +43,7 @@ export class ServicioService {
       this.servicioList.update(servicio.key,{
         name: servicio.name,
         time: servicio.time,
+        state: servicio.state,
       })
       this.toastr.success('Operación realizada con exito');
     }
@@ -55,11 +57,11 @@ export class ServicioService {
   deleteServicio(key: string) {
     try {
       this.servicioList.remove(key);
-      this.toastr.success´("Operación realizada con exito");
+      this.toastr.success("Operación realizada con exito");
     }
     catch (err) {
       console.log("error al eliminar un servicio: ", err);
-      this.toastr.error("Comprueba que todo este correcto", "Error al Eliinar un Servicio");
+      this.toastr.error("Comprueba que todo este correcto", "Error al Eliminar un Servicio");
       return null;
     }
   }

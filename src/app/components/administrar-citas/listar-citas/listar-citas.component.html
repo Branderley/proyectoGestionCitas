@@ -4,44 +4,47 @@
       <b>Lista de Citas</b>
     </div>
     <div class="row" *ngFor="let users of userList">
-      <table class="table table-bordered" *ngIf="user.email==users.email && users.rank=='client'">
-        <tr>
-          <td><b>Fecha</b></td>
-          <td><b>Hora</b></td>
-          <td><b>Usuario</b></td>
-        </tr>
-        <tr *ngFor="let cita of citaList">
-          <td *ngIf="cita.emailuser==user.email">{{ cita.fecha }}</td>
-          <td *ngIf="cita.emailuser==user.email">{{ cita.hora }}</td>
-          <td *ngIf="cita.emailuser==user.email">
-            <a class="btn btn-secondary text-black" (click)="onEdit(cita)">
-              <i class="fa fa-pencil-square-o"></i>
-            </a>
-            <a class="btn btn-danger text-black" (click)="onDelete(cita.key)">
-              <i class="fa fa-trash"></i>
-            </a>
-          </td>
-        </tr>
+      <table class="table table-sm table-hover" *ngIf="user.email==users.email && users.rank=='client'">
+        <tbody>
+          <tr>
+            <td><b>Fecha</b></td>
+            <td><b>Hora</b></td>
+          </tr>
+          <tr *ngFor="let cita of citaList">
+            <td *ngIf="users.email==user.email && cita.dniuser==users.dni">{{ cita.fecha }}</td>
+            <td *ngIf="users.email==user.email && cita.dniuser==users.dni">{{ cita.hora }}</td>
+            <td *ngIf="users.email==user.email && cita.dniuser==users.dni">
+              <a class="btn btn-secondary text-black" (click)="onEdit(cita)">
+                <i class="fa fa-pencil-square-o"></i>
+              </a>
+              <a class="btn btn-danger text-black" (click)="onDelete(cita.key)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
       </table>
       <table class="table table-bordered" *ngIf="user.email==users.email && users.rank=='admin'">
-        <tr>
-          <td><b>Fecha</b></td>
-          <td><b>Hora</b></td>
-          <td><b>Usuario</b></td>
-        </tr>
-        <tr *ngFor="let cita of citaList">
-          <td>{{ cita.fecha }}</td>
-          <td>{{ cita.hora }}</td>
-          <td>{{ cita.emailuser }}</td>
-          <td>
-            <a class="btn btn-secondary text-black" (click)="onEdit(cita)">
-              <i class="fa fa-pencil-square-o"></i>
-            </a>
-            <a class="btn btn-danger text-black" (click)="onDelete(cita.key)">
-              <i class="fa fa-trash"></i>
-            </a>
-          </td>
-        </tr>
+        <tbody>
+          <tr>
+            <td><b>Fecha</b></td>
+            <td><b>Hora</b></td>
+            <td><b>Dni Cliente</b></td>
+          </tr>
+          <tr *ngFor="let cita of citaList">
+            <td>{{ cita.fecha }}</td>
+            <td>{{ cita.hora }}</td>
+            <td>{{ cita.dniuser }}</td>
+            <td>
+              <a class="btn btn-secondary text-black" (click)="onEdit(cita)">
+                <i class="fa fa-pencil-square-o"></i>
+              </a>
+              <a class="btn btn-danger text-black" (click)="onDelete(cita.key)">
+                <i class="fa fa-trash"></i>
+              </a>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>

@@ -24,7 +24,7 @@ import { provideMessaging,getMessaging } from '@angular/fire/messaging';
 //Components
 import { ToastrModule } from 'ngx-toastr';
 import { SwiperModule } from 'swiper/angular';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './shared/home/home.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -46,6 +46,7 @@ import { ListarServiciosComponent } from './components/administrar-servicios/lis
 import { AdministrarBannersComponent } from './components/administrar-banners/administrar-banners.component';
 import { BannerComponent } from './components/administrar-banners/banner/banner.component';
 import { ListarBannersComponent } from './components/administrar-banners/listar-banners/listar-banners.component';
+import { NgDropImagesDirective } from './directives/ng-drop-images.directive';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { ListarBannersComponent } from './components/administrar-banners/listar-
     ListarServiciosComponent,
     AdministrarBannersComponent,
     BannerComponent,
-    ListarBannersComponent
+    ListarBannersComponent,
+    NgDropImagesDirective
   ],
   imports: [
     AppRoutingModule,
@@ -77,6 +79,7 @@ import { ListarBannersComponent } from './components/administrar-banners/listar-
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
 
     SwiperModule,
     ToastrModule.forRoot(),

@@ -31,14 +31,14 @@ export class ListarMedicosComponent implements OnInit {
     });
   }
 
-  onEdit(medico: MedicoModule){
+  onEdit(medico: MedicoModule) {
     this.medicoService.selectedMedico = Object.assign({}, medico);
   }
 
-  onDelete(key: string){
+  onDelete(key: string) {
     if(confirm('¿Estas seguro de querer eliminarlo?')) {
       this.medicoService.deleteMedico(key);
-      this.toastr.success('Operacion realizada con exito', 'Datos Eliminados');
+      this.toastr.success('Operacion realizada con exito', 'Medico Eliminado');
     }
   }
 

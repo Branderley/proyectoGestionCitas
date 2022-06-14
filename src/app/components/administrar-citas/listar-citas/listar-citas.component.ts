@@ -51,7 +51,6 @@ export class ListarCitasComponent implements OnInit {
   onDelete(key: string){
     if(confirm('¿Estas seguro de querer eliminarlo?')) {
       this.citaService.deleteCita(key);
-      this.toastr.success('Operacion realizada con exito', 'Cita Eliminada');
     }
   }
 

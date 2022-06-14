@@ -13,7 +13,7 @@ export class AdministrarMedicosComponent implements OnInit {
   userList: UserModule[] = [];
 
   constructor(
-    private readonly userService: UserService
+    private readonly userService: UserService,
   ) { }
 
   ngOnInit(): void {

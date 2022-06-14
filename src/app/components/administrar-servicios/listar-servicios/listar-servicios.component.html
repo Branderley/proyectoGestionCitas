@@ -1,3 +1,25 @@
-<div class="container">
-  <p>listar-servicios works!</p>
+<div class="card m-3" *ngIf="userLogged|async as user">
+  <div class="card-body">
+    <div class="card-header m-2 text-center">
+      <b>Lista de Servicios</b>
+    </div>
+    <table class="table table-sm table-hover">
+      <tbody>
+        <tr>
+          <td><b>Nombre del Servicio</b></td>
+        </tr>
+        <tr *ngFor="let servicio of servicioList">
+          <td>{{ servicio.name }}</td>
+        <td>
+          <a class="btn btn-secondary text-black" (click)="onEdit(servicio)">
+            <i class="fa fa-pencil-square-o"></i>
+          </a>
+          <a class="btn btn-danger text-black" (click)="onDelete(servicio.key)">
+            <i class="fa fa-trash"></i>
+          </a>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>

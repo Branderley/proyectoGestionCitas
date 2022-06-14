@@ -10,6 +10,7 @@
         #key="ngModel"
         [(ngModel)]="citaService.selectedCita.key"
       >
+
       <div class="form-floating form-group col-10">
         <input
           type="date"
@@ -23,6 +24,7 @@
           >
           <label for="date">Fecha</label>
       </div>
+
       <div class="form-floating form-group col-10">
         <select
           class="form-control m-2 form-select"
@@ -56,6 +58,7 @@
         </select>
           <label for="hora">Hora</label>
       </div>
+
       <div class="form-floating form-group col-10">
         <select
           class="form-control m-2 form-select"
@@ -65,13 +68,13 @@
           [(ngModel)]="citaService.selectedCita.typeservice"
           required
           >
-          <option value="Consulta">Consulta</option>
-          <option value="Curación">Curación</option>
+          <option *ngFor="let servicio of servicioList" value={{servicio.name}}>{{ servicio.name }}</option>
         </select>
         <label for="typeesrvice">Tipo de Servicio</label>
       </div>
+
       <div class="form-floating form-group col-10">
-        <select *ngFor="let medico of medicoList"
+        <select
           class="form-control m-2 form-select"
           id="dnidoc"
           name="dnidoc"
@@ -79,7 +82,7 @@
           [(ngModel)]="citaService.selectedCita.dnidoc"
           required
           >
-          <option selected value={{medico.dni}}>{{ medico.name }}</option>
+          <option *ngFor="let medico of medicoList" value={{medico.dni}}>{{ medico.name + " " + medico.lastname }}</option>
         </select>
         <label for="dnidoc">Medico</label>
       </div>
@@ -88,10 +91,10 @@
         <div *ngIf="user.email==users.email && users.rank=='client'">
           <input
             type="hidden"
-            name="emailuser"
-            #emailuser="ngModel"
-            [(ngModel)]="user.email"
-            value="{{user.email}}"
+            name="dniuser"
+            #dniuser="ngModel"
+            [(ngModel)]="users.dni"
+            value="{{users.dni}}"
           >
           <input
             type="hidden"
@@ -101,15 +104,16 @@
             value="Pendiente"
           >
         </div>
+
         <div class="form-group col" *ngIf="user.email==users.email && users.rank=='admin'">
           <div class="form-floating form-group col-10">
             <input
             type="text"
             class="form-control m-2"
-            id="emailuser"
-            name="emailuser"
-            #emailuser="ngModel"
-            [(ngModel)]="citaService.selectedCita.emailuser"
+            id="dniuser"
+            name="dniuser"
+            #dniuser="ngModel"
+            [(ngModel)]="citaService.selectedCita.dniuser"
             maxlength=25
             placeholder="cliente"
             required
@@ -133,6 +137,7 @@
           </div>
         </div>
       </div>
+
       <div class="form-group">
         <button class="btn btn-primary m-2" type="submit">
           <i class="fa fa-plus-circle"></i> Agregar Cita

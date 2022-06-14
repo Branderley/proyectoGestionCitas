@@ -29,7 +29,7 @@ export class CitaService {
         fecha: cita.fecha,
         hora: cita.hora,
         typeservice: cita.typeservice,
-        emailuser: cita.emailuser,
+        dniuser: cita.dniuser,
         dnidoc: cita.dnidoc,
         state: cita.state,
       })
@@ -48,7 +48,7 @@ export class CitaService {
         fecha: cita.fecha,
         hora: cita.hora,
         typeservice: cita.typeservice,
-        emailuser: cita.emailuser,
+        dniuser: cita.dniuser,
         dnidoc: cita.dnidoc,
         state: cita.state,
       })

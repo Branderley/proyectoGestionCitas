@@ -12,7 +12,7 @@ export class CitaModule {
   fecha: string;
   hora: string;
   typeservice: string;
-  emailuser: string;
+  dniuser: string;
   dnidoc: string;
   state: string;
 }
