@@ -3,8 +3,10 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { CitaModule } from 'src/app/models/cita.module';
+import { MedicoModule } from 'src/app/models/medico.module';
 import { UserModule } from 'src/app/models/user.module';
 import { CitaService } from 'src/app/services/cita.service';
+import { MedicoService } from 'src/app/services/medico.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,11 +17,12 @@ import { UserService } from 'src/app/services/user.service';
 export class CitaComponent implements OnInit {
 
   userList: UserModule[] = [];
+  medicoList: MedicoModule[] = [];
 
   constructor(
     private citasService: CitaService,
     private readonly userService: UserService,
-    private toastr: ToastrService
+    private medicoService: MedicoService,
   ) {
     this.citaService;
   }
@@ -34,6 +37,14 @@ export class CitaComponent implements OnInit {
         let x = element.payload.toJSON() as UserModule;
         x.key = element.key;
         this.userList.push(x);
+      })
+    });
+    this.medicoService.getMedicosList().snapshotChanges().subscribe(item => {
+      this.medicoList = [];
+      item.forEach(element => {
+        let x = element.payload.toJSON() as MedicoModule;
+        x.key = element.key;
+        this.medicoList.push(x);
       })
     });
     this.citaService.selectedCita.state = "Pendiente";

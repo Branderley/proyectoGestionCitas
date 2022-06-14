@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/compat/database';
+import { ToastrService } from 'ngx-toastr';
 
 import { MedicoModule } from '../models/medico.module';
 
@@ -12,7 +13,8 @@ export class MedicoService {
   selectedMedico: MedicoModule = new MedicoModule();
 
   constructor(
-    private db: AngularFireDatabase
+    private db: AngularFireDatabase,
+    private toastr: ToastrService,
   ) {
     this.medicoList = db.list('/medico');
   }
@@ -22,28 +24,52 @@ export class MedicoService {
   }
 
   insertMedico(medico: MedicoModule) {
-    this.medicoList.push({
-      name: medico.name,
-      lastname: medico.lastname,
-      dni: medico.dni,
-      phone: medico.phone,
-      specialty: medico.specialty,
-      state: medico.state,
-    })
+    try {
+      this.medicoList.push({
+        name: medico.name,
+        lastname: medico.lastname,
+        dni: medico.dni,
+        phone: medico.phone,
+        specialty: medico.specialty,
+        state: medico.state,
+      })
+      this.toastr.success('Operacion realizada con exito');
+    }
+    catch (err) {
+      console.log("error al insertar un Medico: ", err);
+      this.toastr.error('Compruebe que todo este correcto', 'Error al Registrar un Medico');
+      return null;
+    }
   }
 
   updateMedico(medico: MedicoModule) {
-    this.medicoList.update(medico.key, {
-      name: medico.name,
-      lastname: medico.lastname,
-      dni: medico.dni,
-      phone: medico.phone,
-      specialty: medico.specialty,
-      state: medico.state,
-    })
+    try {
+      this.medicoList.update(medico.key, {
+        name: medico.name,
+        lastname: medico.lastname,
+        dni: medico.dni,
+        phone: medico.phone,
+        specialty: medico.specialty,
+        state: medico.state,
+      })
+      this.toastr.success('Operacion realizada con exito');
+    }
+    catch (err) {
+      console.log("error al actualizar un medico: ", err);
+      this.toastr.error('Compruebe que todo este correcto', 'Error al Actualizar un Medico');
+      return null;
+    }
   }
 
   deleteMedico(key: string) {
-    this.medicoList.remove(key);
+    try {
+      this.medicoList.remove(key);
+      this.toastr.success('Operacion realizada con exito');
+    }
+    catch (err) {
+      console.log("error al eliminar un medico: ", err);
+      this.toastr.error('Compruebe que todo este correcto', 'Error al Eliminar un Medico');
+      return null;
+    }
   }
 }

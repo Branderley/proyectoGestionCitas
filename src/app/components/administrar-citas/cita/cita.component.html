@@ -10,55 +10,79 @@
         #key="ngModel"
         [(ngModel)]="citaService.selectedCita.key"
       >
-      <div class="form-group col-10">
-        <label>Fecha</label>
+      <div class="form-floating form-group col-10">
         <input
           type="date"
           class="form-control m-2"
+          id="date"
           name="fecha"
           #fecha="ngModel"
           [(ngModel)]="citaService.selectedCita.fecha"
           maxlength=10
           required
-        >
+          >
+          <label for="date">Fecha</label>
       </div>
-      <div class="form-group col-10">
-        <label>Hora</label>
-        <input
+      <div class="form-floating form-group col-10">
+        <select
           type="text"
-          class="form-control m-2"
+          class="form-control m-2 form-select"
+          id="hora"
           name="hora"
           #hora="ngModel"
           [(ngModel)]="citaService.selectedCita.hora"
-          maxlength=5
+          placeholder="escoge tu horario"
           required
-        >
+          >
+          <option value="8:00">8:00</option>
+          <option value="8:00">8:30</option>
+          <option value="8:00">9:00</option>
+          <option value="8:00">9:30</option>
+          <option value="8:00">10:00</option>
+          <option value="8:00">10:30</option>
+          <option value="8:00">11:00</option>
+          <option value="8:00">11:30</option>
+          <option value="8:00">12:00</option>
+          <option value="8:00">12:30</option>
+          <option value="8:00">2:00</option>
+          <option value="8:00">2:30</option>
+          <option value="8:00">3:00</option>
+          <option value="8:00">3:30</option>
+          <option value="8:00">4:00</option>
+          <option value="8:00">4:30</option>
+          <option value="8:00">5:00</option>
+          <option value="8:00">5:30</option>
+          <option value="8:00">6:00</option>
+          <option value="8:00">6:30</option>
+        </select>
+          <label for="hora">Hora</label>
       </div>
-      <div class="form-group col-10">
-        <label>Tipo de Servicio</label>
+      <div class="form-floating form-group col-10">
         <select
           class="form-control m-2 form-select"
+          id="typeservice"
           name="typeservice"
           #typeservice="ngModel"
           [(ngModel)]="citaService.selectedCita.typeservice"
           required
-        >
+          >
           <option value="Consulta">Consulta</option>
           <option value="Curación">Curación</option>
         </select>
+        <label for="typeesrvice">Tipo de Servicio</label>
       </div>
-      <div class="form-group col-10">
-        <label>Medico</label>
-        <select
+      <div class="form-floating form-group col-10">
+        <select *ngFor="let medico of medicoList"
           class="form-control m-2 form-select"
+          id="dnidoc"
           name="dnidoc"
           #dnidoc="ngModel"
           [(ngModel)]="citaService.selectedCita.dnidoc"
           required
-        >
-          <option selected value="Medico 1">medico 1</option>
-          <option value="Medico 2">medico 2</option>
+          >
+          <option selected value={{medico.dni}}>{{ medico.name }}</option>
         </select>
+        <label for="dnidoc">Medico</label>
       </div>
 
       <div class="row" *ngFor="let users of userList">
@@ -79,22 +103,24 @@
           >
         </div>
         <div class="form-group col" *ngIf="user.email==users.email && users.rank=='admin'">
-          <div class="form-group col-10">
-            <label>Cliente</label>
+          <div class="form-floating form-group col-10">
             <input
-              type="text"
-              class="form-control m-2"
-              name="emailuser"
-              #emailuser="ngModel"
-              [(ngModel)]="citaService.selectedCita.emailuser"
-              maxlength=25
-              required
+            type="text"
+            class="form-control m-2"
+            id="emailuser"
+            name="emailuser"
+            #emailuser="ngModel"
+            [(ngModel)]="citaService.selectedCita.emailuser"
+            maxlength=25
+            placeholder="cliente"
+            required
             >
+            <label for="emailuser">Cliente</label>
           </div>
-          <div class="form-group col-10">
-            <label>Estado</label>
+          <div class="form-floating form-group col-10">
             <select
               class="form-control m-2 form-select"
+              id="state"
               name="state"
               #state="ngModel"
               [(ngModel)]="citaService.selectedCita.state"
@@ -104,6 +130,7 @@
               <option value="Realizado">Realizado</option>
               <option value="Cancelado">Cancelado</option>
             </select>
+            <label for="state">Estado</label>
           </div>
         </div>
       </div>

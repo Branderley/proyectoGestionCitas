@@ -43,16 +43,33 @@ export class CitaService {
   }
 
   updateCita(cita: CitaModule) {
-    this.citaList.update(cita.key, {
-      fecha: cita.fecha,
-      hora: cita.hora,
-      typeservice: cita.typeservice,
-      emailuser: cita.emailuser,
-      dnidoc: cita.dnidoc,
-      state: cita.state,
-    })
+    try {
+      this.citaList.update(cita.key, {
+        fecha: cita.fecha,
+        hora: cita.hora,
+        typeservice: cita.typeservice,
+        emailuser: cita.emailuser,
+        dnidoc: cita.dnidoc,
+        state: cita.state,
+      })
+      this.toastr.success('Operacion realizada con exito');
+    }
+    catch (err) {
+      console.log("error al actualizar una Cita: ", err);
+      this.toastr.error('Compruebe que todo este correcto', 'Error al Actualizar la Cita');
+      return null;
+    }
   }
+
   deleteCita(key: string) {
-    this.citaList.remove(key);
+    try {
+      this.citaList.remove(key);
+      this.toastr.success('Operacion realizada con exito');
+    }
+    catch (err) {
+      console.log("error al eliminar una cita: ", err);
+      this.toastr.error('Compruebe que todo este correcto', 'Error al Eliminar una Cita');
+      return null;
+    }
   }
 }
