@@ -40,6 +40,12 @@ import { AdministrarCitasComponent } from './components/administrar-citas/admini
 import { CitaComponent } from './components/administrar-citas/cita/cita.component';
 import { ListarCitasComponent } from './components/administrar-citas/listar-citas/listar-citas.component';
 import { HoraComponent } from './components/administrar-citas/hora/hora.component';
+import { AdministrarServiciosComponent } from './components/administrar-servicios/administrar-servicios.component';
+import { ServicioComponent } from './components/administrar-servicios/servicio/servicio.component';
+import { ListarServiciosComponent } from './components/administrar-servicios/listar-servicios/listar-servicios.component';
+import { AdministrarBannersComponent } from './components/administrar-banners/administrar-banners.component';
+import { BannerComponent } from './components/administrar-banners/banner/banner.component';
+import { ListarBannersComponent } from './components/administrar-banners/listar-banners/listar-banners.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +63,13 @@ import { HoraComponent } from './components/administrar-citas/hora/hora.componen
     AdministrarCitasComponent,
     CitaComponent,
     ListarCitasComponent,
-    HoraComponent
+    HoraComponent,
+    AdministrarServiciosComponent,
+    ServicioComponent,
+    ListarServiciosComponent,
+    AdministrarBannersComponent,
+    BannerComponent,
+    ListarBannersComponent
   ],
   imports: [
     AppRoutingModule,

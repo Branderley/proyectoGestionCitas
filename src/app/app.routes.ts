@@ -8,6 +8,8 @@ import { AdministrarLoginComponent } from './components/administrar-login/admini
 import { AdministrarHistorialComponent } from './components/administrar-historial/administrar-historial.component';
 import { AdministrarMedicosComponent } from './components/administrar-medicos/administrar-medicos.component';
 import { AdministrarCitasComponent } from './components/administrar-citas/administrar-citas.component';
+import { AdministrarServiciosComponent } from './components/administrar-servicios/administrar-servicios.component';
+import { AdministrarBannersComponent } from './components/administrar-banners/administrar-banners.component';
 
 const redirecUnauthorizesToLogin = () => redirectUnauthorizedTo(['login']);
 
@@ -19,8 +21,10 @@ export const ROUTES: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirecUnauthorizesToLogin } },
   { path: 'administrar-user', component: AdministrarLoginComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirecUnauthorizesToLogin } },
   { path: 'administrar-citas', component: AdministrarCitasComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirecUnauthorizesToLogin } },
-  { path: 'administrar-historial', component: AdministrarHistorialComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirecUnauthorizesToLogin } },
   { path: 'administrar-medicos', component: AdministrarMedicosComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirecUnauthorizesToLogin } },
+  { path: 'administrar-servicios', component: AdministrarServiciosComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirecUnauthorizesToLogin } },
+  { path: 'administrar-banners', component: AdministrarBannersComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirecUnauthorizesToLogin } },
+  { path: 'administrar-historial', component: AdministrarHistorialComponent, canActivate: [AuthGuard], data: { authGuardPipe: redirecUnauthorizesToLogin } },
 
   { path: '**', pathMatch: 'full', redirectTo: '' }
 ];

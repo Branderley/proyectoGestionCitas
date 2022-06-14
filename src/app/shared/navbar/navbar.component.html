@@ -14,6 +14,12 @@
           <li class="nav-item" *ngFor="let users of userList">
             <a class="nav-link" routerLink="administrar-medicos" *ngIf="user.email==users.email && users.rank=='admin'">Administrar Medicos</a>
           </li>
+          <li class="nav-item" *ngFor="let users of userList">
+            <a class="nav-link" routerLink="administrar-servicios" *ngIf="user.email==users.email && users.rank=='admin'">Servicios</a>
+          </li>
+          <li class="nav-item" *ngFor="let users of userList">
+            <a class="nav-link" routerLink="administrar-banners" *ngIf="user.email==users.email && users.rank=='admin'">Banners</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" routerLink="administrar-historial">Historial</a>
           </li>
