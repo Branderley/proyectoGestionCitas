@@ -3,22 +3,24 @@
     <div class="card-header m-2 text-center">
       <b>Datos Personales</b>
     </div>
-    <div class="card-body" *ngFor="let users of userList">
+    <div *ngFor="let users of userList">
       <div *ngIf="users.email == user.email">
-        <div class="m-2">
-          Nombres: {{ users.name }}
-        </div>
-        <div class="m-2">
-          Apellidos: {{ users.lastname }}
-        </div>
-        <div class="m-2">
-          DNI: {{ users.dni }}
-        </div>
-        <div class="m-2">
-          Número de celular: {{ users.phone }}
-        </div>
-        <div class="m-2">
-          Dirección: {{ users.address }}
+        <div class="m-3">
+          <div class="m-2">
+            Nombres: {{ users.name }}
+          </div>
+          <div class="m-2">
+            Apellidos: {{ users.lastname }}
+          </div>
+          <div class="m-2">
+            DNI: {{ users.dni }}
+          </div>
+          <div class="m-2">
+            Número de celular: {{ users.phone }}
+          </div>
+          <div class="m-2">
+            Dirección: {{ users.address }}
+          </div>
         </div>
       </div>
     </div>

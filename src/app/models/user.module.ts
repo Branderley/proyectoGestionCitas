@@ -14,6 +14,9 @@ export class UserModule {
   email: string;
   dni: string;
   phone: string;
+  maritalstatus: string;
+  condition: string;
+  safe: string;
   address: string;
   rank: string;
   state: boolean;

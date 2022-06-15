@@ -11,5 +11,5 @@ export class ServicioModule {
   key: string;
   name: string;
   time: string;
-  state: string;
+  state: boolean;
 }

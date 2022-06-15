@@ -54,7 +54,7 @@
                 placeholder="Ingrese su correo electronico"
               >
 
-              <label style="float: left;">Celular:</label>
+              <!--label style="float: left;">Celular:</label>
               <input
                 class="form-control m-2"
                 type="text"
@@ -64,6 +64,39 @@
                 maxlength=9
                 required
                 placeholder="Ingrese su número de celular"
+              >
+
+              <label style="float: left;">Estado Civil:</label>
+              <input
+                class="form-control m-2"
+                type="text"
+                name="maritalstatus"
+                #maritalstatus="ngModel"
+                [(ngModel)]="userService.selectedUser.maritalstatus"
+                required
+                placeholder="Ingrese su estado civil"
+              >
+
+              <label style="float: left;">Condición:</label>
+              <input
+                class="form-control m-2"
+                type="text"
+                name="condition"
+                #condition="ngModel"
+                [(ngModel)]="userService.selectedUser.condition"
+                required
+                placeholder="Ingrese su condición"
+              >
+
+              <label style="float: left;">Seguro:</label>
+              <input
+                class="form-control m-2"
+                type="text"
+                name="maritalstatus"
+                #maritalstatus="ngModel"
+                [(ngModel)]="userService.selectedUser.safe"
+                required
+                placeholder="Ingrese su seguro"
               >
 
               <label style="float: left;">Dirección:</label>
@@ -76,7 +109,7 @@
                 maxlength=25
                 required
                 placeholder="Ingrese su dirección"
-              >
+              -->
 
               <input
                 class="form-control m-2"

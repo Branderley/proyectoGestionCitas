@@ -38,7 +38,6 @@ export class ListarServiciosComponent implements OnInit {
   onDelete(key: string) {
     if(confirm('¿Estas seguro de querer eliminarlo?')) {
       this.servicioService.deleteServicio(key);
-      this.toastr.success('Operacion realizada con exito', 'Servicio Eliminado');
     }
   }
 

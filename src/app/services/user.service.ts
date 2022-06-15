@@ -34,8 +34,11 @@ export class UserService {
           lastname: user.lastname,
           email: user.email,
           dni: user.dni,
-          phone: user.phone,
-          address: user.address,
+          /*phone: user.phone,
+          maritalstatus: user.maritalstatus,
+          condition: user.condition,
+          safe: user.safe,
+          address: user.address,*/
           rank: "client",
           state: true
         })
@@ -66,7 +69,12 @@ export class UserService {
       dni: user.dni,
       email: user.email,
       phone: user.phone,
+      maritalstatus: user.maritalstatus,
+      condition: user.condition,
+      safe: user.safe,
       address: user.address,
+      rank: user.rank,
+      state: user.state,
     })
   }
 
