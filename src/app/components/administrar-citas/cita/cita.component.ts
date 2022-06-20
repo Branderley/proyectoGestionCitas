@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 
 import { CitaModule } from 'src/app/models/cita.module';
 import { MedicoModule } from 'src/app/models/medico.module';
@@ -16,6 +16,16 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./cita.component.css']
 })
 export class CitaComponent implements OnInit {
+
+  cita: CitaModule = {
+    key: '',
+    fecha: '',
+    hora: '',
+    typeservice: '',
+    dnidoc: '',
+    dniuser: '',
+    state: ''
+  }
 
   userList: UserModule[] = [];
   medicoList: MedicoModule[] = [];
@@ -67,11 +77,12 @@ export class CitaComponent implements OnInit {
     this.citaService.selectedCita.state = "Pendiente";
   }
 
-  onSubmit(citaForm: NgForm) {
-    if (citaForm.value.key == null)
-      this.citaService.insertCita(citaForm.value);
+  onSubmit() {
+    const {key, fecha, hora, typeservice, dnidoc, dniuser, state} = this.cita;
+    if (this.cita.key == null)
+      this.citaService.insertCita(this.cita);
     else
-      this.citaService.updateCita(citaForm.value);
+      this.citaService.updateCita(this.cita);
 
     this.ngOnInit();
   }
@@ -92,21 +103,22 @@ export class CitaComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      fecha: ['', [Validators.required]],
-      hora: ['', [Validators.required]],
-      typeservice: ['', [Validators.required]],
-      dnidoc: ['', [Validators.required]],
-      dniuser: ['', [Validators.required]],
-      state: ['', [Validators.required]],
+      fecha: new FormControl ('', [Validators.required]),
+      hora: new FormControl ('', [Validators.required]),
+      typeservice: new FormControl ('', [Validators.required]),
+      dnidoc: new FormControl ('', [Validators.required]),
+      dniuser: new FormControl ('', [Validators.required]),
+      state: new FormControl ('', [Validators.required]),
     });
   }
 
-  save(event:Event, citaForm?: NgForm) {
+  save(event:Event) {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
-      this.onSubmit(citaForm);
+      this.onSubmit();
     } else {
+
       this.form.markAllAsTouched();
     }
   }

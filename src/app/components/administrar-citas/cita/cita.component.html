@@ -3,12 +3,10 @@
     <div class="card-header m-2 text-center">
       <b>Gestionar Cita</b>
     </div>
-    <form #citaForm="ngForm" (ngSubmit)="onSubmit(citaForm)">
+    <form [formGroup]="form" (ngSubmit)="save($event)">
       <input
         type="hidden"
         name="key"
-        #key="ngModel"
-        [(ngModel)]="citaService.selectedCita.key"
       >
 
       <div class="form-floating form-group col-10">
@@ -18,14 +16,12 @@
           id="date"
           name="fecha"
           formControlName="fecha"
-          #fecha
-          [(ngModel)]="citaService.selectedCita.fecha"
           maxlength=10
           required
           >
           <label for="date">Fecha</label>
 
-          <div *ngIf="fechaField.errors && fechaField.touched">
+          <div *ngIf="fechaField.errors">
             <p *ngIf="fechaField.hasError('required')" class="text-danger">Necesitas seleccionar una fecha</p>
           </div>
       </div>
@@ -35,8 +31,7 @@
           class="form-control m-2 form-select"
           id="hora"
           name="hora"
-          #hora="ngModel"
-          [(ngModel)]="citaService.selectedCita.hora"
+          formControlName="hora"
           placeholder="escoge tu horario"
           required
           >
@@ -69,8 +64,7 @@
           class="form-control m-2 form-select"
           id="typeservice"
           name="typeservice"
-          #typeservice="ngModel"
-          [(ngModel)]="citaService.selectedCita.typeservice"
+          formControlName="typeservice"
           required
           >
           <option *ngFor="let servicio of servicioList" value={{servicio.name}}>{{ servicio.name }}</option>
@@ -83,8 +77,7 @@
           class="form-control m-2 form-select"
           id="dnidoc"
           name="dnidoc"
-          #dnidoc="ngModel"
-          [(ngModel)]="citaService.selectedCita.dnidoc"
+          formControlName="dnidoc"
           required
           >
           <option *ngFor="let medico of medicoList" value={{medico.dni}}>{{ medico.name + " " + medico.lastname }}</option>
@@ -97,15 +90,13 @@
           <input
             type="hidden"
             name="dniuser"
-            #dniuser="ngModel"
-            [(ngModel)]="users.dni"
+            formControlName="dniuser"
             value="{{users.dni}}"
           >
           <input
             type="hidden"
             name="state"
-            #state="ngModel"
-            [(ngModel)]="citaService.selectedCita.state"
+            formControlName="state"
             value="Pendiente"
           >
         </div>
@@ -117,8 +108,7 @@
             class="form-control m-2"
             id="dniuser"
             name="dniuser"
-            #dniuser="ngModel"
-            [(ngModel)]="citaService.selectedCita.dniuser"
+            formControlName="dniuser"
             maxlength=25
             placeholder="cliente"
             required
@@ -130,8 +120,7 @@
               class="form-control m-2 form-select"
               id="state"
               name="state"
-              #state="ngModel"
-              [(ngModel)]="citaService.selectedCita.state"
+              formControlName="state"
               required
               >
               <option value="Pendiente">Pendiente</option>
