@@ -1,6 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
+import { Component, OnInit } from '@angular/core';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { CitaModule } from 'src/app/models/cita.module';
 import { MedicoModule } from 'src/app/models/medico.module';
@@ -21,14 +20,17 @@ export class CitaComponent implements OnInit {
   userList: UserModule[] = [];
   medicoList: MedicoModule[] = [];
   servicioList: ServicioModule[] = [];
+  form: FormGroup;
 
   constructor(
     private citasService: CitaService,
     private readonly userService: UserService,
     private readonly medicoService: MedicoService,
     private readonly servicioService: ServicioService,
+    private formBuilder: FormBuilder,
   ) {
     this.citaService;
+    this.buildForm();
   }
 
   ngOnInit(): void {
@@ -43,6 +45,7 @@ export class CitaComponent implements OnInit {
         this.userList.push(x);
       })
     });
+
     this.medicoService.getMedicosList().snapshotChanges().subscribe(item => {
       this.medicoList = [];
       item.forEach(element => {
@@ -85,5 +88,50 @@ export class CitaComponent implements OnInit {
 
   get userLogged() {
     return this.userService.getUserLogged();
+  }
+
+  private buildForm() {
+    this.form = this.formBuilder.group({
+      fecha: ['', [Validators.required]],
+      hora: ['', [Validators.required]],
+      typeservice: ['', [Validators.required]],
+      dnidoc: ['', [Validators.required]],
+      dniuser: ['', [Validators.required]],
+      state: ['', [Validators.required]],
+    });
+  }
+
+  save(event:Event, citaForm?: NgForm) {
+    event.preventDefault();
+    if (this.form.valid) {
+      const value = this.form.value;
+      this.onSubmit(citaForm);
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+
+  get fechaField() {
+    return this.form.get('fecha');
+  }
+
+  get horaField() {
+    return this.form.get('hora');
+  }
+
+  get typeserviceField() {
+    return this.form.get('typeservice');
+  }
+
+  get dnidocField() {
+    return this.form.get('dnidoc');
+  }
+
+  get dniuserField() {
+    return this.form.get('dniuser');
+  }
+
+  get stateFied() {
+    return this.form.get('state');
   }
 }

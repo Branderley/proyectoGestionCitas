@@ -17,12 +17,17 @@
           class="form-control m-2"
           id="date"
           name="fecha"
-          #fecha="ngModel"
+          formControlName="fecha"
+          #fecha
           [(ngModel)]="citaService.selectedCita.fecha"
           maxlength=10
           required
           >
           <label for="date">Fecha</label>
+
+          <div *ngIf="fechaField.errors && fechaField.touched">
+            <p *ngIf="fechaField.hasError('required')" class="text-danger">Necesitas seleccionar una fecha</p>
+          </div>
       </div>
 
       <div class="form-floating form-group col-10">

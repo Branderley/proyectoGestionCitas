@@ -53,7 +53,8 @@ export class UserService {
 
   async login(email: string, password: string) {
     try {
-      return await this.afauth.signInWithEmailAndPassword(email, password);
+      await this.afauth.signInWithEmailAndPassword(email, password);
+      return this.router.navigate(['/administrar-user']);
     }
     catch (err) {
       console.log("error en login: ", err);

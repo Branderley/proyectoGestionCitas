@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="card">
       <div class="card-header">
           <b>Registrate</b>
@@ -6,10 +6,10 @@
       <div class="card-body p-4">
           <form #userForm="ngForm"(ngSubmit)="registrar(userForm)">
 
-              <label style="float: left;">Nombres: </label>
+            <div class="form-floating">
               <input
                 type="text"
-                class="form-control m-2"
+                class="form-control mb-2"
                 name="name"
                 #name="ngModel"
                 [(ngModel)]="userService.selectedUser.name"
@@ -17,11 +17,13 @@
                 required
                 placeholder="Ingrese sus nombres"
               >
+              <label for="name">Nombres</label>
+            </div>
 
-              <label style="float: left;">Apellidos: </label>
+            <div class="form-floating">
               <input
                 type="text"
-                class="form-control m-2"
+                class="form-control mb-2"
                 name="lastname"
                 #lastname="ngModel"
                 [(ngModel)]="userService.selectedUser.lastname"
@@ -29,10 +31,12 @@
                 required
                 placeholder="Ingrese sus apellidos"
               >
+              <label for="lastname">Apellidos</label>
+            </div>
 
-              <label style="float: left;">DNI:</label>
+            <div class="form-floating">
               <input
-                class="form-control m-2"
+                class="form-control mb-2"
                 type="text"
                 name="dni"
                 #dni="ngModel"
@@ -41,10 +45,12 @@
                 required
                 placeholder="Ingrese su número de dni"
               >
+              <label for="dni">DNI</label>
+            </div>
 
-              <label style="float: left;">Correo:</label>
+            <div class="form-floating">
               <input
-                class="form-control m-2"
+                class="form-control mb-2"
                 type="email"
                 name="email"
                 #email="ngModel"
@@ -53,85 +59,87 @@
                 required
                 placeholder="Ingrese su correo electronico"
               >
+              <label for="email">Correo</label>
+            </div>
 
-              <!--label style="float: left;">Celular:</label>
-              <input
-                class="form-control m-2"
-                type="text"
-                name="phone"
-                #phone="ngModel"
-                [(ngModel)]="userService.selectedUser.phone"
-                maxlength=9
-                required
-                placeholder="Ingrese su número de celular"
-              >
+            <!--label style="float: left;">Celular:</label>
+            <input
+              class="form-control m-2"
+              type="text"
+              name="phone"
+              #phone="ngModel"
+              [(ngModel)]="userService.selectedUser.phone"
+              maxlength=9
+              required
+              placeholder="Ingrese su número de celular"
+            >
 
-              <label style="float: left;">Estado Civil:</label>
-              <input
-                class="form-control m-2"
-                type="text"
-                name="maritalstatus"
-                #maritalstatus="ngModel"
-                [(ngModel)]="userService.selectedUser.maritalstatus"
-                required
-                placeholder="Ingrese su estado civil"
-              >
+            <label style="float: left;">Estado Civil:</label>
+            <input
+              class="form-control m-2"
+              type="text"
+              name="maritalstatus"
+              #maritalstatus="ngModel"
+              [(ngModel)]="userService.selectedUser.maritalstatus"
+              required
+              placeholder="Ingrese su estado civil"
+            >
 
-              <label style="float: left;">Condición:</label>
-              <input
-                class="form-control m-2"
-                type="text"
-                name="condition"
-                #condition="ngModel"
-                [(ngModel)]="userService.selectedUser.condition"
-                required
-                placeholder="Ingrese su condición"
-              >
+            <label style="float: left;">Condición:</label>
+            <input
+              class="form-control m-2"
+              type="text"
+              name="condition"
+              #condition="ngModel"
+              [(ngModel)]="userService.selectedUser.condition"
+              required
+              placeholder="Ingrese su condición"
+            >
 
-              <label style="float: left;">Seguro:</label>
-              <input
-                class="form-control m-2"
-                type="text"
-                name="maritalstatus"
-                #maritalstatus="ngModel"
-                [(ngModel)]="userService.selectedUser.safe"
-                required
-                placeholder="Ingrese su seguro"
-              >
+            <label style="float: left;">Seguro:</label>
+            <input
+              class="form-control m-2"
+              type="text"
+              name="maritalstatus"
+              #maritalstatus="ngModel"
+              [(ngModel)]="userService.selectedUser.safe"
+              required
+              placeholder="Ingrese su seguro"
+            >
 
-              <label style="float: left;">Dirección:</label>
-              <input
-                class="form-control m-2"
-                type="text"
-                name="address"
-                #address="ngModel"
-                [(ngModel)]="userService.selectedUser.address"
-                maxlength=25
-                required
-                placeholder="Ingrese su dirección"
-              -->
+            <label style="float: left;">Dirección:</label>
+            <input
+              class="form-control m-2"
+              type="text"
+              name="address"
+              #address="ngModel"
+              [(ngModel)]="userService.selectedUser.address"
+              maxlength=25
+              required
+              placeholder="Ingrese su dirección"
+            -->
 
-              <input
-                class="form-control m-2"
-                type="hidden"
-                name="rank"
-                #rank="ngModel"
-                value="client"
-                [(ngModel)]="userService.selectedUser.rank"
-              >
+            <input
+              class="form-control mb-2"
+              type="hidden"
+              name="rank"
+              #rank="ngModel"
+              value="client"
+              [(ngModel)]="userService.selectedUser.rank"
+            >
 
-              <input
-                class="form-control m-2"
-                type="hidden"
-                name="state"
-                #state="ngModel"
-                value="true"
-                [(ngModel)]="userService.selectedUser.state"
-              >
+            <input
+              class="form-control mb-2"
+              type="hidden"
+              name="state"
+              #state="ngModel"
+              value="true"
+              [(ngModel)]="userService.selectedUser.state"
+            >
 
-              <label style="float: left;">Contraseña</label>
+            <div class="form-floating">
               <input
-                class="form-control m-2"
+                class="form-control mb-2"
                 type="password"
                 name="password"
                 #password="ngModel"
@@ -140,14 +148,26 @@
                 required
                 placeholder="Ingrese su contraseña"
               >
+              <label for="password">Contraseña</label>
+            </div>
 
-              <div class="card-footer">
-                  <a routerLink="/login">Iniciar Sesión</a>
-              </div>
+            <!--div class="d-grid gap-2">
+                <button class="btn btn-primary m-2" type="submit">Registrarse</button>
+            </div-->
+            <div class="contenedor-boton d-grid gap-2 mb-3">
+              <button class="boton register" type="submit">
+                <div class="icono">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right-short" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4 8a.5.5 0 0 1 .5-.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5A.5.5 0 0 1 4 8z"/>
+                  </svg>
+                </div>
+                <span>Registrarse</span>
+              </button>
+          </div>
 
-              <div class="d-grid gap-2">
-                  <button class="btn btn-primary m-2" type="submit">Registrarse</button>
-              </div>
+            <div class="card-footer">
+                <a routerLink="/login">Iniciar Sesión</a>
+            </div>
           </form>
       </div>
   </div>

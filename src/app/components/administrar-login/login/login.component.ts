@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { debounceTime } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -14,20 +16,45 @@ export class LoginComponent implements OnInit {
     password: ''
   }
 
+  form: FormGroup;
+
   constructor(
     private userService: UserService,
-    private router: Router
-  ) { }
+    private formBuilder: FormBuilder,
+  ) {
+    this.buildForm();
+  }
 
   ngOnInit(): void {
   }
 
-  Ingresar() {
-    console.log(this.user);
+  onSubmit() {
     const { email, password } = this.user;
-    this.userService.login(email, password).then(res => {
-      console.log("se registro: ", res);
-      this.router.navigate(['/administrar-user']);
-    })
+    this.userService.login(email, password);
+  }
+
+  private buildForm() {
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+    });
+  }
+
+  save(event:Event) {
+    event.preventDefault();
+    if (this.form.valid) {
+      const value = this.form.value;
+      this.onSubmit();
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
+
+  get emailField() {
+    return this.form.get('email');
+  }
+
+  get passwordField() {
+    return this.form.get('password');
   }
 }
