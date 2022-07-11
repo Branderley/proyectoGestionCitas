@@ -1,1 +1,12 @@
-<p>view-banners works!</p>
+
+<swiper [navigation]="true" [autoplay]="true" class="mySwiper pe-1 ps-1 mt-1 " [config]="mySwiperConfig">
+  <ng-template swiperSlide class="swiper-slide">
+    <img src="assets/dentista.png" class="card-img-top">
+  </ng-template>
+  <ng-template swiperSlide class="swiper-slide">
+    <img src="assets/clinica.jpg" class="card-img-top">
+  </ng-template>
+  <ng-template swiperSlide class="swiper-slide">
+    <img src="assets/odontoServices.png" class="card-img-top">
+  </ng-template>
+</swiper>

@@ -25,7 +25,7 @@ export class BannerService {
   insertBanner(banner: BannerModule) {
     try {
       this.bannerList.push(banner);
-      this.toastr.success('Operación realizada con exito');
+      this.toastr.success('Operación realizada con exito', 'Banner Agregado');
     }
     catch (err) {
       console.log("error al insertar un Banner: ", err);
@@ -37,7 +37,7 @@ export class BannerService {
   updateBanner(banner: BannerModule) {
     try {
       this.bannerList.update(banner.key, banner);
-      this.toastr.success('Operación realizada con exito');
+      this.toastr.success('Operación realizada con exito', 'Banner Actualizado');
     }
     catch (err) {
       console.log("error al actualizar un Banner: ", err);
@@ -49,7 +49,7 @@ export class BannerService {
   deleteBanner(key: string) {
     try {
       this.bannerList.remove(key);
-      this.toastr.success('Operación realizada con exito');
+      this.toastr.success('Operación realizada con exito', 'Banner Actualizado');
     }
     catch (err) {
       console.log("error al eliminar un Banner: ", err);

@@ -38,7 +38,6 @@ export class ListarMedicosComponent implements OnInit {
   onDelete(key: string) {
     if(confirm('¿Estas seguro de querer eliminarlo?')) {
       this.medicoService.deleteMedico(key);
-      this.toastr.success('Operacion realizada con exito', 'Medico Eliminado');
     }
   }
 

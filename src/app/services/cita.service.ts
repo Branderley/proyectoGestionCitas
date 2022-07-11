@@ -33,7 +33,7 @@ export class CitaService {
         dnidoc: cita.dnidoc,
         state: cita.state,
       })
-      this.toastr.success('Operacion realizada con exito');
+      this.toastr.success('Operacion realizada con exito', 'Cita Registrada');
     }
     catch (err) {
       console.log("error al insertar una Cita: ", err);
@@ -52,7 +52,7 @@ export class CitaService {
         dnidoc: cita.dnidoc,
         state: cita.state,
       })
-      this.toastr.success('Operacion realizada con exito');
+      this.toastr.success('Operacion realizada con exito', 'Cita Actualizada');
     }
     catch (err) {
       console.log("error al actualizar una Cita: ", err);
@@ -64,7 +64,7 @@ export class CitaService {
   deleteCita(key: string) {
     try {
       this.citaList.remove(key);
-      this.toastr.success('Operacion realizada con exito');
+      this.toastr.success('Operacion realizada con exito', 'Cita Eliminada');
     }
     catch (err) {
       console.log("error al eliminar una cita: ", err);

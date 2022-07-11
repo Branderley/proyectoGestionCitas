@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm, FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { NgForm, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 import { CitaModule } from 'src/app/models/cita.module';
 import { MedicoModule } from 'src/app/models/medico.module';
@@ -17,16 +18,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class CitaComponent implements OnInit {
 
-  cita: CitaModule = {
-    key: '',
-    fecha: '',
-    hora: '',
-    typeservice: '',
-    dnidoc: '',
-    dniuser: '',
-    state: ''
-  }
-
   userList: UserModule[] = [];
   medicoList: MedicoModule[] = [];
   servicioList: ServicioModule[] = [];
@@ -38,6 +29,7 @@ export class CitaComponent implements OnInit {
     private readonly medicoService: MedicoService,
     private readonly servicioService: ServicioService,
     private formBuilder: FormBuilder,
+    private toastr: ToastrService
   ) {
     this.citaService;
     this.buildForm();
@@ -78,19 +70,22 @@ export class CitaComponent implements OnInit {
   }
 
   onSubmit() {
-    const {key, fecha, hora, typeservice, dnidoc, dniuser, state} = this.cita;
-    if (this.cita.key == null)
-      this.citaService.insertCita(this.cita);
-    else
-      this.citaService.updateCita(this.cita);
+    if (this.form.valid) {
+      if (this.form.value.key == null)
+        this.citaService.insertCita(this.form.value);
+      else
+        this.citaService.updateCita(this.form.value);
 
-    this.ngOnInit();
+      this.ngOnInit();
+      this.resetForm();
+    } else {
+      this.toastr.error("Error al querer registrar una cita", "Error");
+      this.form.markAllAsTouched();
+    }
   }
 
-  resetForm(citaForm?: NgForm) {
-    if(citaForm != null)
-      citaForm.reset();
-      this.citaService.selectedCita= new CitaModule();
+  resetForm() {
+    this.form.reset();
   }
 
   get citaService() {
@@ -103,24 +98,13 @@ export class CitaComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      fecha: new FormControl ('', [Validators.required]),
-      hora: new FormControl ('', [Validators.required]),
-      typeservice: new FormControl ('', [Validators.required]),
-      dnidoc: new FormControl ('', [Validators.required]),
-      dniuser: new FormControl ('', [Validators.required]),
-      state: new FormControl ('', [Validators.required]),
+      fecha: ['', [Validators.required]],
+      hora: ['', [Validators.required]],
+      typeservice: ['', [Validators.required]],
+      dnidoc: ['', [Validators.required]],
+      dniuser: ['', [Validators.required]],
+      state: ['', [Validators.required]],
     });
-  }
-
-  save(event:Event) {
-    event.preventDefault();
-    if (this.form.valid) {
-      const value = this.form.value;
-      this.onSubmit();
-    } else {
-
-      this.form.markAllAsTouched();
-    }
   }
 
   get fechaField() {

@@ -1,14 +1,44 @@
 <div class="container" *ngIf="userLogged|async as user">
-  <div *ngFor="let users of userList">
-    <div *ngIf="user.email==users.email && users.rank=='client'">
+  <div class="row">
+    <div class="card m-4 col-4">
+      <div class="card-header m-2 text-center">
+        <b>Lista de Citas</b>
+      </div>
+      <div *ngFor="let users of userList">
+        <div class="table table-bordered" *ngIf="user.email==users.email && users.rank=='client'">
+          <tbody>
+            <tr>
+              <th scope="col">Fecha</th>
+              <th scope="col">Hora</th>
+            </tr>
+            <tr *ngFor="let cita of citaList">
+              <td *ngIf="users.email==user.email && cita.dniuser==users.dni && cita.state=='Realizado'">{{ cita.fecha }}</td>
+              <td *ngIf="users.email==user.email && cita.dniuser==users.dni && cita.state=='Realizado'">{{ cita.hora }}</td>
+            </tr>
+          </tbody>
+        </div>
 
-      <p>administrar-historial client works!</p>
-
+        <div class="table table-bordered" *ngIf="user.email==users.email && users.rank=='admin'">
+          <tbody>
+            <tr>
+              <th scope="col">Fecha</th>
+              <th scope="col">Hora</th>
+              <th scope="col">Dni Cliente</th>
+              <th scope="col">Tipo de Servicio</th>
+            </tr>
+            <tr *ngFor="let cita of citaList">
+              <td *ngIf="cita.state=='Realizado'">{{ cita.fecha }}</td>
+              <td *ngIf="cita.state=='Realizado'">{{ cita.hora }}</td>
+              <td *ngIf="cita.state=='Realizado'">{{ cita.dniuser }}</td>
+              <td *ngIf="cita.state=='Realizado'">{{ cita.typeservice }}</td>
+            </tr>
+          </tbody>
+        </div>
+      </div>
     </div>
-    <div *ngIf="user.email==users.email && users.rank=='admin'">
 
-      <p>administrar-historial admin works!</p>
-
+    <div class="card m-4 col-7">
+      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias obcaecati, fugit itaque expedita nisi beatae deserunt aliquid molestias quisquam eos. Aut ea, fugiat impedit explicabo accusantium ratione quia delectus amet?</p>
     </div>
   </div>
 </div>

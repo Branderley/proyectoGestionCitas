@@ -33,7 +33,7 @@ export class MedicoService {
         specialty: medico.specialty,
         state: medico.state,
       })
-      this.toastr.success('Operación realizada con exito');
+      this.toastr.success('Operación realizada con exito', 'Medico Agregado');
     }
     catch (err) {
       console.log("error al insertar un Medico: ", err);
@@ -52,7 +52,7 @@ export class MedicoService {
         specialty: medico.specialty,
         state: medico.state,
       })
-      this.toastr.success('Operación realizada con exito');
+      this.toastr.success('Operación realizada con exito', 'Medico Actualizado');
     }
     catch (err) {
       console.log("error al actualizar un medico: ", err);
@@ -64,7 +64,7 @@ export class MedicoService {
   deleteMedico(key: string) {
     try {
       this.medicoList.remove(key);
-      this.toastr.success('Operación realizada con exito');
+      this.toastr.success('Operación realizada con exito', 'Medico Eliminado');
     }
     catch (err) {
       console.log("error al eliminar un medico: ", err);

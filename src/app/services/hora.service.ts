@@ -30,7 +30,7 @@ export class HoraService {
         hora: hora.hora,
         state: hora.state,
       })
-      this.toastr.success('Operacion realizada con exito');
+      this.toastr.success('Operacion realizada con exito', 'Hora Registrada');
     }
     catch (err) {
       console.log("error al insertar una Hora: ", err);
@@ -44,7 +44,7 @@ export class HoraService {
       this.horaList.update(hora.key, {
         state: hora.state,
       })
-      this.toastr.success('Operacion realizada con exito');
+      this.toastr.success('Operacion realizada con exito', 'Hora Actualizada');
     }
     catch (err) {
       console.log("error al actualizar una Hora: ", err);
@@ -56,7 +56,7 @@ export class HoraService {
   deleteHora(key: string) {
     try {
       this.horaList.remove(key);
-      this.toastr.success('Operacion realizada con exito');
+      this.toastr.success('Operacion realizada con exito', 'Hora Eliminada');
     }
     catch (err) {
       console.log("error al eliminar una hora: ", err);

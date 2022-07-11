@@ -3,82 +3,76 @@
     <div class="card-header m-2 text-center">
       <b>Gestionar Cita</b>
     </div>
-    <form [formGroup]="form" (ngSubmit)="save($event)">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <input
         type="hidden"
-        name="key"
+        class="form-control"
+        id="key"
       >
 
-      <div class="form-floating form-group col-10">
+      <div class="form-floating form-group text-center col-11">
         <input
           type="date"
           class="form-control m-2"
-          id="date"
           name="fecha"
           formControlName="fecha"
-          maxlength=10
-          required
-          >
-          <label for="date">Fecha</label>
+          [ngClass]="{ 'is-invalid': fechaField.errors && fechaField.touched }"
+        >
+        <label for="date">Fecha</label>
 
-          <div *ngIf="fechaField.errors">
-            <p *ngIf="fechaField.hasError('required')" class="text-danger">Necesitas seleccionar una fecha</p>
-          </div>
+        <!-- div *ngIf="fechaField.errors && fechaField.touched">
+          <div *ngIf="fechaField.hasError('required')" class="text-danger">Necesitas seleccionar una fecha</div>
+        </div -->
       </div>
 
-      <div class="form-floating form-group col-10">
+      <div class="form-floating form-group col-11">
         <select
           class="form-control m-2 form-select"
-          id="hora"
           name="hora"
           formControlName="hora"
           placeholder="escoge tu horario"
-          required
+          [ngClass]="{ 'is-invalid': horaField.errors && horaField.touched }"
           >
-          <option value="8:00">8:00</option>
-          <option value="8:30">8:30</option>
-          <option value="9:00">9:00</option>
-          <option value="9:30">9:30</option>
-          <option value="10:00">10:00</option>
-          <option value="10:30">10:30</option>
-          <option value="11:00">11:00</option>
-          <option value="11:30">11:30</option>
-          <option value="12:00">12:00</option>
-          <option value="12:30">12:30</option>
-          <option value="2:00">2:00</option>
-          <option value="2:30">2:30</option>
-          <option value="3:00">3:00</option>
-          <option value="3:30">3:30</option>
-          <option value="4:00">4:00</option>
-          <option value="4:30">4:30</option>
-          <option value="5:00">5:00</option>
-          <option value="5:30">5:30</option>
-          <option value="6:00">6:00</option>
-          <option value="6:30">6:30</option>
+          <option value="9:00">9:00 am</option>
+          <option value="9:30">9:30 am</option>
+          <option value="10:00">10:00 am</option>
+          <option value="10:30">10:30 am</option>
+          <option value="11:00">11:00 am</option>
+          <option value="11:30">11:30 am</option>
+          <option value="12:00">12:00 am</option>
+          <option value="12:30">12:30 am</option>
+          <option value="3:00">3:00 am</option>
+          <option value="3:30">3:30 am</option>
+          <option value="4:00">4:00 am</option>
+          <option value="4:30">4:30 am</option>
+          <option value="5:00">5:00 am</option>
+          <option value="5:30">5:30 am</option>
+          <option value="6:00">6:00 am</option>
+          <option value="6:30">6:30 am</option>
+          <option value="7:00">7:00 am</option>
+          <option value="7:30">7:30 am</option>
         </select>
           <label for="hora">Hora</label>
       </div>
 
-      <div class="form-floating form-group col-10">
+      <div class="form-floating form-group col-11">
         <select
           class="form-control m-2 form-select"
-          id="typeservice"
           name="typeservice"
           formControlName="typeservice"
-          required
+          [ngClass]="{ 'is-invalid': typeserviceField.errors && typeserviceField.touched }"
           >
           <option *ngFor="let servicio of servicioList" value={{servicio.name}}>{{ servicio.name }}</option>
         </select>
-        <label for="typeesrvice">Tipo de Servicio</label>
+        <label for="typeservice">Tipo de Servicio</label>
       </div>
 
-      <div class="form-floating form-group col-10">
+      <div class="form-floating form-group col-11">
         <select
           class="form-control m-2 form-select"
-          id="dnidoc"
           name="dnidoc"
           formControlName="dnidoc"
-          required
+          [ngClass]="{ 'is-invalid': dnidocField.errors && dnidocField.touched }"
           >
           <option *ngFor="let medico of medicoList" value={{medico.dni}}>{{ medico.name + " " + medico.lastname }}</option>
         </select>
@@ -88,44 +82,41 @@
       <div class="row" *ngFor="let users of userList">
         <div *ngIf="user.email==users.email && users.rank=='client'">
           <input
-            type="hidden"
+            type="text"
             name="dniuser"
             formControlName="dniuser"
             value="{{users.dni}}"
           >
           <input
-            type="hidden"
+            type="text"
             name="state"
-            formControlName="state"
+            formControlName="dniuser"
             value="Pendiente"
           >
         </div>
 
         <div class="form-group col" *ngIf="user.email==users.email && users.rank=='admin'">
-          <div class="form-floating form-group col-10">
+          <div class="form-floating form-group col-11">
             <input
             type="text"
             class="form-control m-2"
-            id="dniuser"
             name="dniuser"
             formControlName="dniuser"
             maxlength=25
             placeholder="cliente"
-            required
+            [ngClass]="{ 'is-invalid': users.rank=='admin' && dniuserField.errors && dniuserField.touched }"
             >
             <label for="emailuser">Cliente</label>
           </div>
-          <div class="form-floating form-group col-10">
+          <div class="form-floating form-group col-11">
             <select
               class="form-control m-2 form-select"
-              id="state"
               name="state"
               formControlName="state"
-              required
+              [ngClass]="{ 'is-invalid': users.rank=='admin' && stateFied.errors && stateFied.touched }"
               >
               <option value="Pendiente">Pendiente</option>
               <option value="Realizado">Realizado</option>
-              <option value="Cancelado">Cancelado</option>
             </select>
             <label for="state">Estado</label>
           </div>

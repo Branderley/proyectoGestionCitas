@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 import { CitaModule } from 'src/app/models/cita.module';
 import { UserModule } from 'src/app/models/user.module';
 import { CitaService } from 'src/app/services/cita.service';
 import { UserService } from 'src/app/services/user.service';
+import { CitaComponent } from '../cita/cita.component';
 
 @Component({
   selector: 'app-listar-citas',
@@ -15,13 +17,14 @@ export class ListarCitasComponent implements OnInit {
 
   citaList: CitaModule[] = [];
   userList: UserModule[] = [];
+  cita: CitaComponent;
 
   constructor(
     private readonly userService: UserService,
     private citasService: CitaService,
     private toastr: ToastrService
   ) {
-    this.citaService;
+    //this.citaService;
   }
 
   ngOnInit(): void {
@@ -44,8 +47,8 @@ export class ListarCitasComponent implements OnInit {
     });
   }
 
-  onEdit(cita: CitaModule){
-    this.citaService.selectedCita = Object.assign({}, cita);
+  onEdit(citaSelect: CitaModule){
+
   }
 
   onDelete(key: string){

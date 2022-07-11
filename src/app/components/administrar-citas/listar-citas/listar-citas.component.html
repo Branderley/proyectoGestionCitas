@@ -7,8 +7,8 @@
       <table class="table table-sm table-hover" *ngIf="user.email==users.email && users.rank=='client'">
         <tbody>
           <tr>
-            <td><b>Fecha</b></td>
-            <td><b>Hora</b></td>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
           </tr>
           <tr *ngFor="let cita of citaList">
             <td *ngIf="users.email==user.email && cita.dniuser==users.dni && cita.state=='Pendiente'">{{ cita.fecha }}</td>
@@ -27,9 +27,9 @@
       <table class="table table-bordered" *ngIf="user.email==users.email && users.rank=='admin'">
         <tbody>
           <tr>
-            <td><b>Fecha</b></td>
-            <td><b>Hora</b></td>
-            <td><b>Dni Cliente</b></td>
+            <th scope="col">Fecha</th>
+            <th scope="col">Hora</th>
+            <th scope="col">Dni Cliente</th>
           </tr>
           <tr *ngFor="let cita of citaList">
             <td>{{ cita.fecha }}</td>
