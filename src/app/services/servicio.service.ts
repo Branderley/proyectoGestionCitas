@@ -29,7 +29,7 @@ export class ServicioService {
         time: servicio.time,
         state: servicio.state,
       })
-      this.toastr.success('Operación realizada con exito');
+      this.toastr.success('Operación realizada con exito', 'Servicio Agregado con exito');
     }
     catch (err) {
       console.log("error al insertar un Servicio: ", err);
@@ -45,7 +45,7 @@ export class ServicioService {
         time: servicio.time,
         state: servicio.state,
       })
-      this.toastr.success('Operación realizada con exito');
+      this.toastr.success('Operación realizada con exito', 'Servicio Actualizado con exito');
     }
     catch (err) {
       console.log("error al actualizar un servicio: ", err);
@@ -57,7 +57,7 @@ export class ServicioService {
   deleteServicio(key: string) {
     try {
       this.servicioList.remove(key);
-      this.toastr.success("Operación realizada con exito");
+      this.toastr.success("Operación realizada con exito", 'Servicio Eliminado con exito');
     }
     catch (err) {
       console.log("error al eliminar un servicio: ", err);
