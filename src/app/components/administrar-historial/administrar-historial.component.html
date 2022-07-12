@@ -10,10 +10,12 @@
             <tr>
               <th scope="col">Fecha</th>
               <th scope="col">Hora</th>
+              <th scope="col">Tipo de Servicio</th>
             </tr>
             <tr *ngFor="let cita of citaList">
               <td *ngIf="users.email==user.email && cita.dniuser==users.dni && cita.state=='Realizado'">{{ cita.fecha }}</td>
               <td *ngIf="users.email==user.email && cita.dniuser==users.dni && cita.state=='Realizado'">{{ cita.hora }}</td>
+              <td *ngIf="users.email==user.email && cita.dniuser==users.dni && cita.state=='Realizado'">{{ cita.typeservice }}</td>
             </tr>
           </tbody>
         </div>

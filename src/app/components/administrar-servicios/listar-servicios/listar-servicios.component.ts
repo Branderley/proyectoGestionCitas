@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
 import { ServicioModule } from 'src/app/models/servicio.module';
 import { ServicioService } from 'src/app/services/servicio.service';
@@ -17,7 +16,6 @@ export class ListarServiciosComponent implements OnInit {
   constructor(
     private readonly userService: UserService,
     private servicioService: ServicioService,
-    private toastr: ToastrService,
   ) { }
 
   ngOnInit(): void {

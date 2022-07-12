@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
 import { MedicoModule } from 'src/app/models/medico.module';
 import { MedicoService } from 'src/app/services/medico.service';
@@ -17,7 +16,6 @@ export class ListarMedicosComponent implements OnInit {
   constructor(
     private readonly userService: UserService,
     private medicoService: MedicoService,
-    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -38,7 +36,6 @@ export class ListarMedicosComponent implements OnInit {
   onDelete(key: string) {
     if(confirm('¿Estas seguro de querer eliminarlo?')) {
       this.medicoService.deleteMedico(key);
-      this.toastr.success('Operacion realizada con exito', 'Medico Eliminado');
     }
   }
 

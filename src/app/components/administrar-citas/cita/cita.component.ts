@@ -73,6 +73,7 @@ export class CitaComponent implements OnInit {
     else
       this.citaService.updateCita(citaForm.value);
 
+    this.resetForm();
     this.ngOnInit();
   }
 

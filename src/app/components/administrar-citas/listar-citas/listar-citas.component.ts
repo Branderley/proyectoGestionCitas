@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ToastrService } from 'ngx-toastr';
 
 import { CitaModule } from 'src/app/models/cita.module';
 import { UserModule } from 'src/app/models/user.module';
@@ -19,7 +18,6 @@ export class ListarCitasComponent implements OnInit {
   constructor(
     private readonly userService: UserService,
     private citasService: CitaService,
-    private toastr: ToastrService
   ) {
     this.citaService;
   }
